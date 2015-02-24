@@ -17,14 +17,26 @@ setup(
     license='',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     namespace_packages=['ckanext', 'ckanext.dataset_rating'],
+    package_data={'': [
+        'templates/*.html',\
+        'templates/package/*.html',
+        'public/*']},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         # -*- Extra requirements: -*-
     ],
-    entry_points='''
-        [ckan.plugins]
-        # Add plugins here, e.g.
-        dataset_rating=ckanext.dataset_rating.plugin:DatasetRatingPlugin
-    ''',
+    #entry_points='''
+    #    [ckan.plugins]
+    #    # Add plugins here, e.g.
+    #    dataset_rating=ckanext.dataset_rating.plugin:DatasetRatingPlugin
+    #''',
+    entry_points={
+        'babel.extractors': [
+                    'ckan = ckan.lib.extract:extract_ckan',
+                    ],
+        'ckan.plugins' : [
+                    'dataset_rating = ckanext.dataset_rating.plugin:DatasetRatingPlugin',
+                    ]
+        }
 )
