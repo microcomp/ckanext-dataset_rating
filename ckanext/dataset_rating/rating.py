@@ -48,7 +48,7 @@ def can_rate(user_id):
                    'user': c.user or c.author, 'auth_user_obj': c.userobj,
                    'for_view': True}
     try:
-        logic.check_access('tags_admin', context)
+        logic.check_access('add_dataset_rating', context)
         return True
     except logic.NotAuthorized:
         return False

@@ -1,0 +1,9 @@
+{%ckan_extends%}
+
+
+
+
+      {% block package_search_results_list %}
+        {{ h.snippet('snippets/package_list.html', packages=c.page.items, c = 'a') }}
+      {% endblock %}
+    
