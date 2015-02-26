@@ -104,6 +104,7 @@ class RatingController(base.BaseController):
         dataset_id = rating['dataset_id']
         rating = rating['value']
         data_dict = {'rating': rating, 'dataset_id':dataset_id, 'user_id':c.userobj.id}
-        new_rating(context, data_dict)
+        if can_rate(c.userobj.id):
+            new_rating(context, data_dict)
 
         return h.redirect_to(controller='package', action='read', id=dataset_id)
