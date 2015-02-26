@@ -25,7 +25,9 @@ function set_val(){
 }
 </script>
 <style type="text/css">
-
+#content > div.row.wrapper > aside > form > div > div{
+	line-height: 2em;
+}
 #content > div.row.wrapper > aside > form >div.star-rating.rating-md.rating-active{
 font-size: 3em;
 line-height: 1em;
@@ -33,10 +35,10 @@ line-height: 1em;
 }
 
 </style>
-<form action="/dataset/rate/" method='post' onclick="set_val()">
-	<input id="input-1"  class="rating" data-min="0" data-max="5" data-step="1" style="width:100%; padding:0px; margin:0px;" >
+<form action="/dataset/rate/" method='post' onclick="set_val()" style="heigth: 2em;">
+	<input id="input-1"  class="rating" data-min="0" data-max="5" data-step="1"  {% if h.can_rate(c.userobj.id)== False %} readonly  {%endif%} value="{{h.avg(c.current_package_id)}}">
 	<input id='value' name="value" type="text" style="display: none;" > 
 	<input id='dataset_id' name="dataset_id" type="text" style="display: none;" value="{{c.current_package_id}}"> 
-	<button class='mybutton' name="submit" type="submit"> {{_('Submit')}}</button>
+	{% if h.can_rate(c.userobj.id) %}<button class='mybutton' name="submit" type="submit"> {{_('Submit')}}</button>{%endif%}
 </form>
 {%endblock%}
