@@ -4,6 +4,7 @@
 
 
       {% block package_search_results_list %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         {{ h.snippet('snippets/package_list.html', packages=c.page.items, c = 'a') }}
       {% endblock %}
     

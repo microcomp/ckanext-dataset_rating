@@ -17,15 +17,7 @@ import db
 import uuid
 import logging
 import ckan.logic
-'''
-TODO:
--db table
--check acces (helper)
--if RateDataset
--mod/new rating
--current rating (helper)
 
-'''
 def create_dataset_rating_table(context):
     if db.dataset_rating_table is None:
         db.init_db(context['model'])
@@ -33,12 +25,12 @@ def create_dataset_rating_table(context):
 @ckan.logic.side_effect_free
 def in_rating_db(context, data_dict):
     create_dataset_rating_table(context)
-    if data_dict['user_id'] == None or data_dict['user_id'] == '':
+    if data_dict['dataset_id'] == None or data_dict['dataset_id'] == '':
         return False
     res = db.DatasetRating.get(**data_dict)
     if res:
         for i in res:
-            if i.user_id == data_dict['user_id']:
+            if i.dataset_id == data_dict['dataset_id']:
                 return True
 
     return False
@@ -74,7 +66,7 @@ def avg(dataset_id):
 @ckan.logic.side_effect_free
 def new_rating(context, data_dict):
     create_dataset_rating_table(context)
-    data_dict2 = {'dataset_id':data_dict['dataset_id'], 'user_id':data_dict['user_id']}
+    data_dict2 = {'dataset_id':data_dict['dataset_id']} #, 'user_id':data_dict['user_id']}
     if in_rating_db(context, data_dict2):
         res = db.DatasetRating.get(**data_dict2)[0]
         res.rating = data_dict['rating']
