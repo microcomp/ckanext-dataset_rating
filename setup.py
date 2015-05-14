@@ -24,7 +24,8 @@ setup(
     ],
     entry_points='''
         [ckan.plugins]
-        # Add plugins here, e.g.
         dataset_rating=ckanext.dataset_rating.plugin:DatasetRatingPlugin
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
     ''',
 )
