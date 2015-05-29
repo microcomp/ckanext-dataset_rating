@@ -22,5 +22,5 @@ msgstr ""
 
 #: ckanext/dataset_rating/templates/package/read.html:64
 msgid "Submit"
-msgstr ""
+msgstr "Odosla"
 
