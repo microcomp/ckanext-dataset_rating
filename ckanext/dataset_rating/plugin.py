@@ -20,8 +20,7 @@ class DatasetRatingPlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config, 'public')
     def before_map(self, map):
         map.connect('rate_dataset', '/dataset/rate/', action='RateDataset', controller="ckanext.dataset_rating.rating:RatingController")
-        
         return map
     def get_helpers(self):
-    	return {'avg': rating.avg,
+        return {'avg': rating.avg,
     			'can_rate': rating.can_rate}
