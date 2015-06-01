@@ -18,6 +18,10 @@ import uuid
 import logging
 import ckan.logic
 
+import logging
+
+log = logging.getLogger(__name__)
+
 def create_dataset_rating_table(context):
     if db.dataset_rating_table is None:
         db.init_db(context['model'])
@@ -46,6 +50,7 @@ def can_rate(user_id):
         return False
     return False
 def avg(dataset_id):
+    log.info('retrieving package rating')
     context = {'model': model, 'session': model.Session,
                    'user': c.user or c.author, 'auth_user_obj': c.userobj,
                    'for_view': True}
@@ -55,13 +60,18 @@ def avg(dataset_id):
     result = db.DatasetRating.get(**data_dict)
     
     if len(result) != 0:
+        log.info('custom package rating')
         sum=0.0
         for i in result:
             sum+=float(i.rating)
 
         return sum/len(result)
     else:
-        return 0;
+        log.info('automatic package rating')
+        res = toolkit.get_action('get_dataset_rating')(data_dict={'package_id' : dataset_id})
+        if len(res)==1:
+            return res[0]['openness_score']
+        return 0
 
 @ckan.logic.side_effect_free
 def new_rating(context, data_dict):
