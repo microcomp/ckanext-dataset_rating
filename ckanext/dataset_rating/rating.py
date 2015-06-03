@@ -69,6 +69,7 @@ def avg(dataset_id):
     else:
         log.info('automatic package rating')
         res = toolkit.get_action('get_dataset_rating')(data_dict={'package_id' : dataset_id})
+        log.info(res)
         if len(res)==1:
             return res[0]['openness_score']
         return 0
