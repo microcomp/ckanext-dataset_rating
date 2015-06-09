@@ -14,7 +14,7 @@
                 {% endfor %}
                 {%set avg = h.avg(package.id)%}
                 
-                  <div class="rating-container rating-uni" data-content="★★★★★"><div class="rating-stars" data-content="★★★★★" style="width: {{avg*20}}%;"></div></div>
+                  <div class="rating-container rating-uni" data-content="★★★★★"><div class="rating-stars" data-content="★★★★★" style="width: {{avg|int*20}}%;"></div></div>
 
 {% endblock %}
 {% block resources %}
