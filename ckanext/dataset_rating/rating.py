@@ -70,9 +70,14 @@ def avg(dataset_id):
         log.info('automatic package rating')
         res = toolkit.get_action('get_dataset_rating')(data_dict={'package_id' : dataset_id})
         log.info(res)
-        if len(res)==1:
-            return res[0]['openness_score']
-        return 0
+        max = 0
+        for d in res:
+            try:
+                if int(d['openness_score'])>max:
+                    max = int(d['openness_score'])
+            except ValueError:
+                log.info('couldnt convert openness score to int')
+        return max
 
 @ckan.logic.side_effect_free
 def new_rating(context, data_dict):
