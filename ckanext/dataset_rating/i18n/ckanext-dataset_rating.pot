@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-dataset_rating 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-14 15:04+0100\n"
+"POT-Creation-Date: 2015-06-12 17:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,6 @@ msgstr ""
 "Generated-By: Babel 0.9.6\n"
 
 #: ckanext/dataset_rating/templates/package/read.html:64
-msgid "Submit"
+msgid "Submit rating"
 msgstr ""
 

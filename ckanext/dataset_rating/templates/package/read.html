@@ -61,6 +61,6 @@ font-size: 1.85em;
 	<input id="input-1"  class="rating" data-min="0" data-max="5" data-step="1"  {% if h.can_rate(c.userobj.id)== False %} readonly  {%endif%} value="{{h.avg(c.current_package_id)}}">
 	<input id='value' name="value" type="text" style="display: none;" > 
 	<input id='dataset_id' name="dataset_id" type="text" style="display: none;" value="{{c.current_package_id}}"> 
-	{% if h.can_rate(c.userobj.id) %}<button class='mybutton' name="submit" type="submit"> {{_('Submit')}}</button>{%endif%}
+	{% if h.can_rate(c.userobj.id) %}<button class='mybutton' name="submit" type="submit"> {{_('Submit rating')}}</button>{%endif%}
 </form>
 {%endblock%}
