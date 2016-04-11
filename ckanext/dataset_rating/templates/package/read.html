@@ -58,8 +58,11 @@ font-size: 1.85em;
 }
 </style>
 <form action="/dataset/rate/" method='post' onclick="set_val()" style="heigth: 2em;">
+	<label for="input-1" style="display: none;">{{_('Rating')}}</label>
 	<input id="input-1"  class="rating" data-min="0" data-max="5" data-step="1"  {% if h.can_rate(c.userobj.id)== False %} readonly  {%endif%} value="{{h.avg(c.current_package_id)}}">
+	<label for="value" style="display: none;">{{_('Rating')}}</label>
 	<input id='value' name="value" type="text" style="display: none;" > 
+	<label for="dataset_id" style="display: none;">{{_('Rating')}}</label>
 	<input id='dataset_id' name="dataset_id" type="text" style="display: none;" value="{{c.current_package_id}}"> 
 	{% if h.can_rate(c.userobj.id) %}<button class='mybutton' name="submit" type="submit"> {{_('Submit rating')}}</button>{%endif%}
 </form>
