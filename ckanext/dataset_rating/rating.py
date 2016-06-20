@@ -108,10 +108,26 @@ class RatingController(base.BaseController):
                    'user': c.user or c.author, 'auth_user_obj': c.userobj,
                    'for_view': True}
         rating = logic.clean_dict(df.unflatten(logic.tuplize_dict(logic.parse_params(base.request.params))))
+
         logging.warning(rating)
-        dataset_id = rating['dataset_id']
-        rating = rating['value']
+        try:
+            dataset_id = rating['dataset_id']
+        except KeyError:
+            base.abort(400, _('Missing value')+": dataset_id")
+        try:
+            rating = rating['value']
+        except KeyError:
+             base.abort(400, _('Missing value')+": value")
+
+        if rating < 1:
+            rating = 1
+        if rating > 5:
+            rating = 5
+        if c.userobj == None:
+            base.abort(401)
+
         data_dict = {'rating': rating, 'dataset_id':dataset_id, 'user_id':c.userobj.id}
+
         if can_rate(c.userobj.id):
             new_rating(context, data_dict)
 
